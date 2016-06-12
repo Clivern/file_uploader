@@ -1,0 +1,45 @@
+{
+    "name": "clivern/file_uploader",
+    "type": "library",
+    "description": "PHP File Uploader Package",
+    "keywords": [
+        "clivern",
+        "file_uploader"
+    ],
+    "homepage": "https://github.com/clivern/file_uploader",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "clivern",
+            "email": "hello@clivern.com",
+            "homepage": "http://clivern.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~5.5|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "clivern\\file_uploader\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "clivern\\file_uploader\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
