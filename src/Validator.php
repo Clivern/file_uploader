@@ -5,7 +5,8 @@ namespace Clivern\FileUploader;
 /**
  * Validator Class
  */
-class Validator {
+class Validator
+{
 
     /**
      * A list of catched errors
@@ -51,21 +52,23 @@ class Validator {
      */
     public function validate($file_info)
     {
-        if( (isset($file_info['error'])) && ($file_info['error'] > 0) ){
+        if ((isset($file_info['error'])) && ($file_info['error'] > 0)) {
             $this->errors[] = "Error while uploading the file";
         }
 
-        if( (is_array($this->roles['supported_extensions'])) && !(in_array($file_info['extension'], $this->roles['supported_extensions'])) ) ){
+        if ((is_array($this->roles['supported_extensions'])) &&
+            !(in_array($file_info['extension'], $this->roles['supported_extensions']))) {
             $this->errors[] = "File extension is invalid.";
         }
 
-        if( (is_array($this->roles['supported_types'])) && !(in_array($file_info['type'], $this->roles['supported_types'])) ){
+        if ((is_array($this->roles['supported_types'])) &&
+            !(in_array($file_info['type'], $this->roles['supported_types']))) {
             $this->errors[] = "File type is invalid.";
         }
 
         $max_size = $this->updateSize($this->roles['max_size']);
 
-        if( ($this->roles['max_size'] != false) && ($file_info['size'] > $max_size) ){
+        if (($this->roles['max_size'] != false) && ($file_info['size'] > $max_size)) {
             $this->errors[] = "File size must not exceed {$this->roles['max_size']}.";
         }
 
@@ -95,15 +98,15 @@ class Validator {
     private function updateSize($size)
     {
 
-        if( strpos($size, "KB") !== false){
+        if (strpos($size, "KB") !== false) {
             return intval($size) * 1;
-        }elseif( strpos($size, "MB") !== false){
+        } elseif (strpos($size, "MB") !== false) {
             return intval($size) * 1;
-        }elseif( strpos($size, "GB") !== false){
+        } elseif (strpos($size, "GB") !== false) {
             return intval($size) * 1;
-        }elseif( strpos($size, "TB") !== false){
+        } elseif (strpos($size, "TB") !== false) {
             return intval($size) * 1;
-        }else{
+        } else {
             return false
         }
 

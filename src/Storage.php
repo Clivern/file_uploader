@@ -5,7 +5,8 @@ namespace Clivern\FileUploader;
 /**
  * Storage Class
  */
-class Storage {
+class Storage
+{
 
     /**
      * Storage dir name
@@ -72,17 +73,17 @@ class Storage {
     {
 
         $base_storage = $this->buildBaseDir();
-        if( !$base_storage ){
+        if (!$base_storage) {
             throw new \Exception('Error while creating ' . this->dir_path . $this->dir_name);
         }
 
         $year_based_storage = ($this->year_storage_based) ? $this->buildYearDir() : true;
-        if( !$year_based_storage ){
+        if (!$year_based_storage) {
             throw new \Exception('Error while creating ' . $this->dir_path . $this->dir_name . "/" . date("Y"));
         }
 
         $month_based_storage = ($this->year_storage_based && $this->month_storage_based) ? $this->buildMonthDir() : true;
-        if( !$month_based_storage ){
+        if (!$month_based_storage) {
             throw new \Exception('Error while creating ' . $this->dir_path . $this->dir_name . "/" . date("Y") . "/" . date("m"));
         }
 
@@ -100,11 +101,11 @@ class Storage {
     {
         $path = $this->dir_path . $this->dir_name;
 
-        if( $this->year_storage_based ){
+        if ($this->year_storage_based) {
             $path .= "/" . date("Y");
         }
 
-        if( $this->year_storage_based && $this->month_storage_based ){
+        if ($this->year_storage_based && $this->month_storage_based){
             $path .= "/" . date("m");
         }
 
@@ -120,7 +121,7 @@ class Storage {
      */
     private funtion buildBaseDir()
     {
-        if( !$this->baseDirExists() ){
+        if (!$this->baseDirExists()) {
             return (boolean) @mkdir($this->dir_path . $this->dir_name);
         }
         return true;
@@ -135,7 +136,7 @@ class Storage {
      */
     private funtion buildYearDir()
     {
-        if( !$this->currentYearDirExists() ){
+        if (!$this->currentYearDirExists()) {
             return (boolean) @mkdir($this->dir_path . $this->dir_name . "/" . date("Y"));
         }
         return true;
@@ -150,7 +151,7 @@ class Storage {
      */
     private funtion buildMonthDir()
     {
-        if( !$this->currentMonthDirExists() ){
+        if (!$this->currentMonthDirExists()) {
             return (boolean) @mkdir($this->dir_path . $this->dir_name . "/" . date("Y") . "/" . date("m"));
         }
         return true;

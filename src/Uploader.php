@@ -1,13 +1,15 @@
 <?php
 
 namespace Clivern\FileUploader;
+
 use Clivern\FileUploader\Storage as Storage;
 use Clivern\FileUploader\Validator as Validator;
 
 /**
  * Uploader Class
  */
-class Uploader {
+class Uploader
+{
 
     /**
      * An instance of storage class
@@ -78,11 +80,11 @@ class Uploader {
 
         $this->file_info = (isset($_FILES[$input_name])) ? $_FILES[$input_name] : false;
 
-        if( $this->file_info == false ){
+        if ($this->file_info == false) {
             $this->errors[] = "Error while uploading the file";
             return false;
         }
-        if( !(is_array($this->file_info)) || !(count($this->file_info) > 0) ){
+        if (!(is_array($this->file_info)) || !(count($this->file_info) > 0)) {
             $this->errors[] = "Error while uploading the file";
             return false;
         }
@@ -97,10 +99,10 @@ class Uploader {
 
         $this->file_info = array_merge($this->file_info, pathinfo($this->file_info['name']));
 
-        if( !$this->validator->validate($this->file_info) ){
+        if (!$this->validator->validate($this->file_info)) {
             $this->errors = $this->validator->getErrors();
             return false;
-        }else{
+        } else {
             return (boolean) $this->uploadAndStore();
         }
 
@@ -140,9 +142,9 @@ class Uploader {
     private function uploadAndStore()
     {
         $file_name = time() . '-' .  substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15) . "." . $this->file_info['extension'];
-        $upload_status = (boolean) move_uploaded_file($this->file_info['tmp_name'],  $this->storage->getUploadPath() . "/" . $file_name);
+        $upload_status = (boolean) move_uploaded_file($this->file_info['tmp_name'], $this->storage->getUploadPath() . "/" . $file_name);
 
-        if( !$upload_status ){
+        if (!$upload_status) {
             $this->errors[] = "Error while uploading the file";
             return false;
         }
