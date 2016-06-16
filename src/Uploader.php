@@ -9,9 +9,40 @@ use Clivern\FileUploader\Validator as Validator;
  */
 class Uploader {
 
+    /**
+     * An instance of storage class
+     *
+     * @since 1.0.0
+     * @access private
+     * @var object
+     */
     private $storage;
+
+    /**
+     * An instance of validator class
+     *
+     * @since 1.0.0
+     * @access private
+     * @var object
+     */
     private $validator;
+
+    /**
+     * Data of file uploaded
+     *
+     * @since 1.0.0
+     * @access private
+     * @var array
+     */
     private $file_info;
+
+    /**
+     * A list of errors detected
+     *
+     * @since 1.0.0
+     * @access private
+     * @var array
+     */
     private $errors;
 
     /**
@@ -48,10 +79,12 @@ class Uploader {
         $this->file_info = (isset($_FILES[$input_name])) ? $_FILES[$input_name] : false;
 
         if( $this->file_info == false ){
-
+            $this->errors[] = "Error while uploading the file";
+            return false;
         }
         if( !(is_array($this->file_info)) || !(count($this->file_info) > 0) ){
-
+            $this->errors[] = "Error while uploading the file";
+            return false;
         }
 
         $this->file_info = array(
@@ -66,8 +99,9 @@ class Uploader {
 
         if( !$this->validator->validate($this->file_info) ){
             $this->errors = $this->validator->getErrors();
+            return false;
         }else{
-            return $this->uploadAndStore();
+            return (boolean) $this->uploadAndStore();
         }
 
     }
@@ -85,6 +119,18 @@ class Uploader {
     }
 
     /**
+     * Get uploaded file info
+     *
+     * @since 1.0.0
+     * @access public
+     * @return array
+     */
+    public function getFileInfo()
+    {
+        return $this->file_info;
+    }
+
+    /**
      * Upload and store file
      *
      * @since 1.0.0
@@ -93,16 +139,15 @@ class Uploader {
      */
     private function uploadAndStore()
     {
-        $file_name = time() . substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15) . "." . $file_info['extension'];
-
-        $upload_status = (boolean) move_uploaded_file($file_data['tmp_name'], $this->storage_path . $this->storage_iden . $sub_path . "/" . $file_name);
+        $file_name = time() . '-' .  substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15) . "." . $this->file_info['extension'];
+        $upload_status = (boolean) move_uploaded_file($this->file_info['tmp_name'],  $this->storage->getUploadPath() . "/" . $file_name);
 
         if( !$upload_status ){
+            $this->errors[] = "Error while uploading the file";
             return false;
         }
 
-        $this->file_data['hash'] = date("Y") . "__" . date("m") . "__" . $file_name;
-
-        return $this->file_data;
+        $this->file_info['hash'] = date("Y") . "__" . date("m") . "__" . $file_name;
+        return true;
     }
 }
