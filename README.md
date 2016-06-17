@@ -7,7 +7,7 @@ PHP File Uploader Package
 [![Build Status](https://travis-ci.org/Clivern/file_uploader.svg?branch=master)](https://travis-ci.org/Clivern/file_uploader)
 
 
-## Install
+## Installation
 
 Via Composer
 
