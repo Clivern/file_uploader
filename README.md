@@ -2,6 +2,11 @@
 
 PHP File Uploader Package
 
+*Current version: [v1.0.0]*
+
+[![Build Status](https://travis-ci.org/Clivern/file_uploader.svg?branch=master)](https://travis-ci.org/Clivern/file_uploader)
+
+
 ## Install
 
 Via Composer
