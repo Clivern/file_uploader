@@ -2,6 +2,10 @@
 
 namespace Clivern\FileUploader;
 
+use Clivern\FileUploader\Storage as Storage;
+use Clivern\FileUploader\Uploader as Uploader;
+use Clivern\FileUploader\Validator as Validator;
+
 class StorageTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -9,7 +13,7 @@ class StorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrueIsTrue()
     {
-        $validator = \Clivern\FileUploader\Validator(false, false, '32MB');
+        $validator = Validator(false, false, '32MB');
         $this->assertTrue(true);
     }
 }
