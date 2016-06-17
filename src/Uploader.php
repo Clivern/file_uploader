@@ -14,45 +14,45 @@ class Uploader
     /**
      * An instance of storage class
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @var object
+     * @var    object
      */
     private $storage;
 
     /**
      * An instance of validator class
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @var object
+     * @var    object
      */
     private $validator;
 
     /**
      * Data of file uploaded
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @var array
+     * @var    array
      */
     private $file_info;
 
     /**
      * A list of errors detected
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @var array
+     * @var    array
      */
     private $errors;
 
     /**
      * Class constuctor
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
-     * @param array $configs
+     * @param  array $configs
      */
     public function __construct($configs)
     {
@@ -69,10 +69,10 @@ class Uploader
     /**
      * Upload, validate and store the file
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
-     * @param string $input_name
-     * @param array $validation_rules
+     * @param  string $input_name
+     * @param  array  $validation_rules
      * @return mixed
      */
     public function uploadFile($input_name, $validation_rules)
@@ -111,7 +111,7 @@ class Uploader
     /**
      * Ger Errors
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      * @return array
      */
@@ -123,7 +123,7 @@ class Uploader
     /**
      * Get uploaded file info
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      * @return array
      */
@@ -135,7 +135,7 @@ class Uploader
     /**
      * Upload and store file
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
      * @return string
      */

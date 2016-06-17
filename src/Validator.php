@@ -11,29 +11,29 @@ class Validator
     /**
      * A list of catched errors
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @var array
+     * @var    array
      */
     private $errors = [];
 
     /**
      * A list of validation rules
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @var array
+     * @var    array
      */
     private $roles;
 
     /**
      * Class constructor
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
-     * @param boolean $supported_extensions
-     * @param boolean $supported_types
-     * @param string  $max_size
+     * @param  boolean $supported_extensions
+     * @param  boolean $supported_types
+     * @param  string  $max_size
      */
     public function __construct($supported_extensions = false, $supported_types = false, $max_size = "32MB")
     {
@@ -45,9 +45,9 @@ class Validator
     /**
      * Validate uploaded file
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
-     * @param array $file_info
+     * @param  array $file_info
      * @return boolean
      */
     public function validate($file_info)
@@ -56,13 +56,15 @@ class Validator
             $this->errors[] = "Error while uploading the file";
         }
 
-        if ((is_array($this->roles['supported_extensions'])) &&
-            !(in_array($file_info['extension'], $this->roles['supported_extensions']))) {
+        if ((is_array($this->roles['supported_extensions']))
+            && !(in_array($file_info['extension'], $this->roles['supported_extensions']))
+        ) {
             $this->errors[] = "File extension is invalid.";
         }
 
-        if ((is_array($this->roles['supported_types'])) &&
-            !(in_array($file_info['type'], $this->roles['supported_types']))) {
+        if ((is_array($this->roles['supported_types']))
+            && !(in_array($file_info['type'], $this->roles['supported_types']))
+        ) {
             $this->errors[] = "File type is invalid.";
         }
 
@@ -78,7 +80,7 @@ class Validator
     /**
      * Get Upload Errors
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      * @return array
      */
@@ -90,9 +92,9 @@ class Validator
     /**
      * Update size to bytes
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
-     * @param string $size
+     * @param  string $size
      * @return mixed
      */
     private function updateSize($size)
