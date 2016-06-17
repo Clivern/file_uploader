@@ -16,7 +16,6 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php" : "~5.5|~7.0"
     },
@@ -37,10 +36,5 @@
     },
     "scripts": {
         "test": "phpunit"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
     }
 }
