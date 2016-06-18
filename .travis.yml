@@ -23,9 +23,10 @@ matrix:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+  - travis_retry composer require clivern/file_uploader
 
 script:
-  - vendor/bin/phpcs --standard=psr2 src/
+#  - vendor/bin/phpcs --standard=psr2 src/
   - vendor/bin/phpunit --bootstrap vendor/autoload.php --coverage-text --coverage-clover=coverage.clover
 
 after_script:

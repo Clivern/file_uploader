@@ -7,7 +7,6 @@ namespace Clivern\FileUploader;
  */
 class Storage
 {
-
     /**
      * Storage dir name
      *

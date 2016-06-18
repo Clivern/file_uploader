@@ -56,14 +56,28 @@ class Uploader
      */
     public function __construct($configs)
     {
-        $configs['year_storage_based'] = !(isset($configs['year_storage_based'])) ? false : $configs['year_storage_based'];
-        $configs['month_storage_based'] = !(isset($configs['month_storage_based'])) ? false : $configs['month_storage_based'];
-        $configs['supported_extensions'] = !(isset($configs['supported_extensions'])) ? false : $configs['supported_extensions'];
-        $configs['supported_types'] = !(isset($configs['supported_types'])) ? false : $configs['supported_types'];
-        $configs['max_size'] = !(isset($configs['max_size'])) ? '32MB' : $configs['max_size'];
+        $configs['year_storage_based'] = !(isset($configs['year_storage_based']))
+        ? false : $configs['year_storage_based'];
+        $configs['month_storage_based'] = !(isset($configs['month_storage_based']))
+        ? false : $configs['month_storage_based'];
+        $configs['supported_extensions'] = !(isset($configs['supported_extensions']))
+        ? false : $configs['supported_extensions'];
+        $configs['supported_types'] = !(isset($configs['supported_types']))
+        ? false : $configs['supported_types'];
+        $configs['max_size'] = !(isset($configs['max_size']))
+        ? '32MB' : $configs['max_size'];
 
-        $this->storage = Storage($configs['dir_path'], $configs['dir_name'], $configs['year_storage_based'], $configs['month_storage_based']);
-        $this->validator = Validator($configs['supported_extensions'], $configs['supported_types'], $configs['max_size']);
+        $this->storage = Storage(
+            $configs['dir_path'],
+            $configs['dir_name'],
+            $configs['year_storage_based'],
+            $configs['month_storage_based']
+        );
+        $this->validator = Validator(
+            $configs['supported_extensions'],
+            $configs['supported_types'],
+            $configs['max_size']
+        );
     }
 
     /**
@@ -141,8 +155,15 @@ class Uploader
      */
     private function uploadAndStore()
     {
-        $file_name = time() . '-' .  substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15) . "." . $this->file_info['extension'];
-        $upload_status = (boolean) move_uploaded_file($this->file_info['tmp_name'], $this->storage->getUploadPath() . "/" . $file_name);
+        $file_name = time() . '-' .
+            substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15) .
+            "." .
+            $this->file_info['extension'];
+
+        $upload_status = (boolean) move_uploaded_file(
+            $this->file_info['tmp_name'],
+            $this->storage->getUploadPath() . "/" . $file_name
+        );
 
         if (!$upload_status) {
             $this->errors[] = "Error while uploading the file";
