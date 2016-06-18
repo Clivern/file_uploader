@@ -13,7 +13,7 @@ class StorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrueIsTrue()
     {
-        $validator = Validator(false, false, '32MB');
+        print_r(get_declared_classes());
         $this->assertTrue(true);
     }
 }
