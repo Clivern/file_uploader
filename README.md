@@ -21,6 +21,12 @@ $ composer require clivern/file_uploader
 //
 ```
 
+## Configurations
+
+```php
+//
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

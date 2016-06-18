@@ -9,6 +9,9 @@ use Clivern\FileUploader\Validator as Validator;
 class UploaderTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * Test File Uploader
+     */
     public function testFileUpload()
     {
 
