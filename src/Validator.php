@@ -109,7 +109,7 @@ class Validator
         } elseif (strpos($size, "TB") !== false) {
             return intval($size) * 1;
         } else {
-            return false
+            return false;
         }
 
     }

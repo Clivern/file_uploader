@@ -53,7 +53,7 @@ class Storage
      * @param boolean $year_storage_based
      * @param boolean $month_storage_based
      */
-    public funtion __construct($dir_path, $dir_name, $year_storage_based = true, $month_storage_based = true)
+    public function __construct($dir_path, $dir_name, $year_storage_based = true, $month_storage_based = true)
     {
         $this->dir_path = rtrim($dir_path, '/') . '/';
         $this->dir_name = $dir_name;
@@ -68,22 +68,29 @@ class Storage
      * @access public
      * @return boolean
      */
-    public buildStorage()
+    public function buildStorage()
     {
 
         $base_storage = $this->buildBaseDir();
         if (!$base_storage) {
-            throw new \Exception('Error while creating ' . this->dir_path . $this->dir_name);
+            throw new \Exception(
+                'Error while creating ' . $this->dir_path . $this->dir_name
+            );
         }
 
         $year_based_storage = ($this->year_storage_based) ? $this->buildYearDir() : true;
         if (!$year_based_storage) {
-            throw new \Exception('Error while creating ' . $this->dir_path . $this->dir_name . "/" . date("Y"));
+            throw new \Exception(
+                'Error while creating ' . $this->dir_path . $this->dir_name . "/" . date("Y")
+            );
         }
 
-        $month_based_storage = ($this->year_storage_based && $this->month_storage_based) ? $this->buildMonthDir() : true;
+        $month_based_storage = ($this->year_storage_based && $this->month_storage_based)
+         ? $this->buildMonthDir() : true;
         if (!$month_based_storage) {
-            throw new \Exception('Error while creating ' . $this->dir_path . $this->dir_name . "/" . date("Y") . "/" . date("m"));
+            throw new \Exception(
+                'Error while creating ' . $this->dir_path . $this->dir_name . "/" . date("Y") . "/" . date("m")
+            );
         }
 
         return true;
@@ -96,7 +103,7 @@ class Storage
      * @access public
      * @return string
      */
-    public funtion getUploadPath()
+    public function getUploadPath()
     {
         $path = $this->dir_path . $this->dir_name;
 
@@ -104,7 +111,7 @@ class Storage
             $path .= "/" . date("Y");
         }
 
-        if ($this->year_storage_based && $this->month_storage_based){
+        if ($this->year_storage_based && $this->month_storage_based) {
             $path .= "/" . date("m");
         }
 
@@ -118,7 +125,7 @@ class Storage
      * @access private
      * @return boolean
      */
-    private funtion buildBaseDir()
+    private function buildBaseDir()
     {
         if (!$this->baseDirExists()) {
             return (boolean) @mkdir($this->dir_path . $this->dir_name);
@@ -133,7 +140,7 @@ class Storage
      * @access private
      * @return boolean
      */
-    private funtion buildYearDir()
+    private function buildYearDir()
     {
         if (!$this->currentYearDirExists()) {
             return (boolean) @mkdir($this->dir_path . $this->dir_name . "/" . date("Y"));
@@ -148,7 +155,7 @@ class Storage
      * @access private
      * @return boolean
      */
-    private funtion buildMonthDir()
+    private function buildMonthDir()
     {
         if (!$this->currentMonthDirExists()) {
             return (boolean) @mkdir($this->dir_path . $this->dir_name . "/" . date("Y") . "/" . date("m"));
@@ -163,7 +170,7 @@ class Storage
      * @access private
      * @return boolean
      */
-    private funtion baseDirExists()
+    private function baseDirExists()
     {
         return (boolean) ( is_dir($this->dir_path . $this->dir_name) );
     }
@@ -175,7 +182,7 @@ class Storage
      * @access private
      * @return boolean
      */
-    private funtion currentYearDirExists()
+    private function currentYearDirExists()
     {
         return (boolean) ( is_dir($this->dir_path . $this->dir_name . "/" . date("Y")) );
     }
@@ -187,7 +194,7 @@ class Storage
      * @access private
      * @return boolean
      */
-    private funtion currentMonthDirExists()
+    private function currentMonthDirExists()
     {
         return (boolean) ( is_dir($this->dir_path . $this->dir_name . "/" . date("Y") . "/" . date("m")) );
     }
