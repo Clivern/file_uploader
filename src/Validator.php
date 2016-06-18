@@ -53,7 +53,7 @@ class Validator
     public function validate($file_info)
     {
         if ((isset($file_info['error'])) && ($file_info['error'] > 0)) {
-            $this->errors[] = "Error while uploading the file";
+            $this->errors[] = "Error while uploading the file.";
         }
 
         if ((is_array($this->roles['supported_extensions']))
@@ -100,13 +100,15 @@ class Validator
     private function updateSize($size)
     {
         if (strpos($size, "KB") !== false) {
-            return intval($size) * pow(2, 10);
+            return intval($size) * 1024;
         } elseif (strpos($size, "MB") !== false) {
-            return intval($size) * pow(2, 20);
+            return intval($size) * pow(1024,2);
         } elseif (strpos($size, "GB") !== false) {
-            return intval($size) * pow(2, 30);
+            return intval($size) * pow(1024,3);
         } elseif (strpos($size, "TB") !== false) {
-            return intval($size) * pow(2, 40);
+            return intval($size) * pow(1024,4);
+        } elseif (strpos($size, "PB") !== false) {
+            return intval($size) * pow(1024,5);
         } else {
             return false;
         }
