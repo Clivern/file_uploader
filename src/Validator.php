@@ -102,13 +102,13 @@ class Validator
         if (strpos($size, "KB") !== false) {
             return intval($size) * 1024;
         } elseif (strpos($size, "MB") !== false) {
-            return intval($size) * pow(1024,2);
+            return intval($size) * pow(1024, 2);
         } elseif (strpos($size, "GB") !== false) {
-            return intval($size) * pow(1024,3);
+            return intval($size) * pow(1024, 3);
         } elseif (strpos($size, "TB") !== false) {
-            return intval($size) * pow(1024,4);
+            return intval($size) * pow(1024, 4);
         } elseif (strpos($size, "PB") !== false) {
-            return intval($size) * pow(1024,5);
+            return intval($size) * pow(1024, 5);
         } else {
             return false;
         }
