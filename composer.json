@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "clivern\\file_uploader\\": "src"
+            "Clivern\\FileUploader\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "clivern\\file_uploader\\": "tests"
+            "Clivern\\FileUploader\\": "tests"
         }
     },
     "scripts": {
