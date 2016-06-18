@@ -67,17 +67,13 @@ class Uploader
         $configs['max_size'] = !(isset($configs['max_size']))
         ? '32MB' : $configs['max_size'];
 
-        $this->storage = Storage(
+        $this->storage = new Storage(
             $configs['dir_path'],
             $configs['dir_name'],
             $configs['year_storage_based'],
             $configs['month_storage_based']
         );
-        $this->validator = Validator(
-            $configs['supported_extensions'],
-            $configs['supported_types'],
-            $configs['max_size']
-        );
+        $this->storage->buildStorage();
     }
 
     /**
@@ -92,14 +88,20 @@ class Uploader
     public function uploadFile($input_name, $validation_rules)
     {
 
+        $this->validator = new Validator(
+            $validation_rules['supported_extensions'],
+            $validation_rules['supported_types'],
+            $validation_rules['max_size']
+        );
+
         $this->file_info = (isset($_FILES[$input_name])) ? $_FILES[$input_name] : false;
 
         if ($this->file_info == false) {
-            $this->errors[] = "Error while uploading the file";
+            $this->errors[] = "Error while uploading the file.";
             return false;
         }
         if (!(is_array($this->file_info)) || !(count($this->file_info) > 0)) {
-            $this->errors[] = "Error while uploading the file";
+            $this->errors[] = "Error while uploading the file.";
             return false;
         }
 
@@ -166,7 +168,7 @@ class Uploader
         );
 
         if (!$upload_status) {
-            $this->errors[] = "Error while uploading the file";
+            $this->errors[] = "Error while uploading the file.";
             return false;
         }
 
