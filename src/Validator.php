@@ -99,15 +99,14 @@ class Validator
      */
     private function updateSize($size)
     {
-
         if (strpos($size, "KB") !== false) {
-            return intval($size) * 1;
+            return intval($size) * pow(2, 10);
         } elseif (strpos($size, "MB") !== false) {
-            return intval($size) * 1;
+            return intval($size) * pow(2, 20);
         } elseif (strpos($size, "GB") !== false) {
-            return intval($size) * 1;
+            return intval($size) * pow(2, 30);
         } elseif (strpos($size, "TB") !== false) {
-            return intval($size) * 1;
+            return intval($size) * pow(2, 40);
         } else {
             return false;
         }

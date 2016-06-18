@@ -13,7 +13,6 @@ class StorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrueIsTrue()
     {
-        print_r(get_declared_classes());
         $this->assertTrue(true);
     }
 }
