@@ -4,7 +4,7 @@ PHP File Uploader Package
 
 *Current version: [v1.0.2]*
 
-[![Build Status](https://travis-ci.org/Clivern/file_uploader.svg?branch=master)](https://travis-ci.org/Clivern/file_uploader)
+[![Build Status](https://travis-ci.org/Clivern/file_uploader.svg?branch=master)](https://travis-ci.org/Clivern/file_uploader)[![Latest Stable Version](https://poser.pugx.org/clivern/file_uploader/v/stable)](https://packagist.org/packages/clivern/file_uploader)[![License](https://poser.pugx.org/clivern/file_uploader/license)](https://packagist.org/packages/clivern/file_uploader)
 
 
 ## Installation
