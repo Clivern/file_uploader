@@ -121,7 +121,6 @@ class Uploader
         } else {
             return (boolean) $this->uploadAndStore();
         }
-
     }
 
     /**

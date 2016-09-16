@@ -112,6 +112,5 @@ class Validator
         } else {
             return false;
         }
-
     }
 }
